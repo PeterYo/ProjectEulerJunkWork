@@ -105,8 +105,35 @@ def Euler8():
     
     return largestNum
 
-def Euler9():
-    x = x
+def Euler9(): # a + b + sqrt(a + b) == 1000
+    for value1 in range(3,1000):
+        for value2 in range(value1,1000):
+            cSquared = value1**2 + value2**2
+            c = int(math.sqrt(cSquared))
+            if(math.sqrt(cSquared) != c):
+                continue
+            if(value1 + value2 + c == 1000):
+                print(str(value1) + " " + str(value2) + " " + str(c))
+                return value1*value2*c
+
+def Euler10(): #as a note, I could use my isPrime function, but it seems really wasteful since I will be recalculating the same prime numbers over and over again
+    retVal = 0
+    primeList = [2]
+    for value in range(2,2000001):
+        if( value % 1000 == 0):
+            print(value)
+        i = 0
+        while(primeList[i] < int(math.sqrt(value)+1)):
+            if(value % primeList[i] == 0):
+                break
+            else:
+                i+=1
+            
+        if(primeList[i] > int(math.sqrt(value))): 
+            primeList.append(value)    
+            retVal += value
+        
+    return retVal
     
 if __name__ == "__main__":
 #    output = str (Euler1())
@@ -125,10 +152,10 @@ if __name__ == "__main__":
 #    print("Answer to 7: " + output)
 #    output = str(Euler8())
 #    print("Answer to 8: " + output)
-    output = str(Euler9())
-    print("Answer to 9: " + output)
-    output = str(Euler7())
-    print("Answer to 7: " + output)
+#    output = str(Euler9())
+#    print("Answer to 9: " + output)
+    output = str(Euler10())
+    print("Answer to 10: " + output)
     output = str(Euler7())
     print("Answer to 7: " + output)
     
